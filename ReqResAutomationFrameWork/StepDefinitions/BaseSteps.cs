@@ -24,6 +24,8 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		protected RestRequest request;
 		protected ListUserResponseDTO listAllUsersresponseDTO;
 		protected ListSingleUserResponseDTO singleUserResponseDTO;
+		protected CreateUserResponseDTO createUserResponseDTO;
+		protected IDictionary<string, string> headers = new Dictionary<string, string>();
 
 		public BaseSteps()
 		{
@@ -46,6 +48,28 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 			restClient = apiMethods.setURL(Base_URL, Sub_URL);
 			request = apiMethods.callGetApi();
 			return apiMethods.getResponse(restClient, request);
+		}
+
+		public IRestResponse CallPostApi(String Sub_URL, String payload, IDictionary<string, string> headers)
+		{
+			restClient = apiMethods.setURL(Base_URL, Sub_URL);
+			request = apiMethods.callPostApi(payload, headers);
+			return apiMethods.getResponse(restClient, request);
+		}
+
+		[Given(@"a User navigates to ReqRes site")]
+		public void GivenAUserNavigatesToReqResSiteforUsers()
+		{
+			Base_URL = configData.ReqResApplication.Base_URL;
+
+
+		}
+
+		[Then(@"the API Status code should be (.*)")]
+		public void ThenTheAPIStatusCodeShouldBe(int responseCode)
+		{
+			int expectedResponseCode = GetAPIStatusCode(restResponse);
+			Assert.AreEqual(responseCode, expectedResponseCode);
 		}
 
 		public void ValidateUserData(Data listElement, int ID, string email, string first_name, string last_name, string avatar)

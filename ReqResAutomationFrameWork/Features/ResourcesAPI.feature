@@ -1,11 +1,11 @@
 ﻿Feature: Resources API Validation
 	Verifies differents scenrios of Resources API
 
-@mytag
+@smokeTest
 Scenario: Verify List All Resources API
 	Given a User navigates to ReqRes site for Resources 
-	When the List Resources API is submitted for page "2"
-	Then the resource API Status code should be 200
+	When the List Resources API is submitted
+	Then the API Status code should be 200
 	And Resource Response should contain data as <id>,<name>,<year>,<color>,<pantone_value>
 
 	Examples:

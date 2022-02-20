@@ -8,6 +8,7 @@ using TechTalk.SpecFlow;
 namespace ReqResAutomationFrameWork.StepDefinitions
 {
 	[Binding]
+	[Scope(Feature = "Resources API Validation")]
 	public class ResourcesAPIValidationSteps : BaseSteps
 	{
 		private string Sub_URL;
@@ -26,27 +27,14 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		}
 
 
-		[When(@"the List Resources API is submitted for page ""(.*)""")]
-		public void WhenTheListResourcesAPIIsSubmittedForPage(string pageNo)
+		[When(@"the List Resources API is submitted")]
+		public void WhenTheListResourcesAPIIsSubmittedForPage()
 		{
-			Sub_URL = configData.ReqResApplication.User_URL + "?page=" + pageNo;
-			//restClient = apiMethods.setURL(Base_URL, Sub_URL);
-			//request = apiMethods.callGetApi();
-			//restResponse = apiMethods.getResponse(restClient, request);
+			Sub_URL = configData.ReqResApplication.Resource_URL;
 			restResponse = CallGetApi(Sub_URL);
 			respnseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListResourcesResponseDTO>(restResponse);
 
 		}
-
-
-		[Then(@"the resource API Status code should be (.*)")]
-		public void ThenTheResourceAPIStatusCodeShouldBe(int responseCode)
-		{
-			int expectedResponseCode = GetAPIStatusCode(restResponse);
-			Assert.AreEqual(responseCode, expectedResponseCode);
-		}
-
-
 
 		[Then(@"Resource Response should contain data as (.*),(.*),(.*),(.*),(.*)")]
 		public void ThenResponseShouldContaindataAs(int ID, string name, string year, string color, string pantone_value)
