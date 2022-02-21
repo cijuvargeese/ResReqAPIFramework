@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ReqResAutomationFrameWork.Models.Response
 {
 
-    // ListAllUserResponse myDeserializedClass = JsonConvert.DeserializeObject<ListAllUserResponse>(myJsonResponse);
+
     public class Data
     {
         public int id { get; set; }

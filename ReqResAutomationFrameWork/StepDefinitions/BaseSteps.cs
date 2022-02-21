@@ -25,6 +25,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		protected ListUserResponseDTO listAllUsersresponseDTO;
 		protected ListSingleUserResponseDTO singleUserResponseDTO;
 		protected CreateUserResponseDTO createUserResponseDTO;
+		protected RegisterResponseDTO registerResponseDTO;
 		protected IDictionary<string, string> headers = new Dictionary<string, string>();
 
 		public BaseSteps()
@@ -43,17 +44,11 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 
 		}
 
-		public IRestResponse CallGetApi(String Sub_URL)
-		{
-			restClient = apiMethods.setURL(Base_URL, Sub_URL);
-			request = apiMethods.callGetApi();
-			return apiMethods.getResponse(restClient, request);
-		}
 
-		public IRestResponse CallPostApi(String Sub_URL, String payload, IDictionary<string, string> headers)
+		public IRestResponse CallRestApi(String methodType, String Sub_URL, String payload, IDictionary<string, string> headers)
 		{
 			restClient = apiMethods.setURL(Base_URL, Sub_URL);
-			request = apiMethods.callPostApi(payload, headers);
+			request = apiMethods.setRestRequestBasedOnMethodType(methodType, payload, headers);
 			return apiMethods.getResponse(restClient, request);
 		}
 

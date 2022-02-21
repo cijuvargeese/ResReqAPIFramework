@@ -19,6 +19,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		{
 			headers.Clear();
 			headers.Add("Content-Type", "application/json");
+
 		}
 
 
@@ -41,7 +42,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		public void WhenTheListUsersAPIIsSubmittedForPage(String pageNo)
 		{
 			Sub_URL = configData.ReqResApplication.User_URL + "?page=" + pageNo;
-			restResponse = CallGetApi(Sub_URL);
+			restResponse = CallRestApi("GET", Sub_URL, null, null);
 			listAllUsersresponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListUserResponseDTO>(restResponse);
 		}
 
@@ -52,7 +53,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 
 			Sub_URL = configData.ReqResApplication.User_URL + "/" + Id;
 			Assert.IsNotNull(configData.ReqResApplication.User_URL, "Sub URL is null");
-			restResponse = CallGetApi(Sub_URL);
+			restResponse = CallRestApi("GET", Sub_URL, null, null);
 			singleUserResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListSingleUserResponseDTO>(restResponse);
 
 		}
@@ -64,9 +65,37 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		{
 			string payload = ConvertObjtoJson.ConvertObjecttoJson(createUserRequestDTO);
 			Sub_URL = configData.ReqResApplication.User_URL;
-			restResponse = CallPostApi(Sub_URL, payload, headers);
+			restResponse = CallRestApi("POST", Sub_URL, payload, headers);
 			createUserResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<CreateUserResponseDTO>(restResponse);
 		}
+
+		[When(@"Update User API is submitted with payload")]
+		public void WhenUpdateUserAPIIsSubmittedWithPayload()
+		{
+			string payload = ConvertObjtoJson.ConvertObjecttoJson(createUserRequestDTO);
+			Sub_URL = configData.ReqResApplication.User_URL + "/2";
+			restResponse = CallRestApi("PUT", Sub_URL, payload, headers);
+			createUserResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<CreateUserResponseDTO>(restResponse);
+		}
+
+		[When(@"Update User API is submitted using PATCH with payload")]
+		public void WhenUpdateUserAPIIsSubmittedUsingPATCHWithPayload()
+		{
+			string payload = ConvertObjtoJson.ConvertObjecttoJson(createUserRequestDTO);
+			Sub_URL = configData.ReqResApplication.User_URL + "/2";
+			restResponse = CallRestApi("PATCH", Sub_URL, payload, headers);
+			createUserResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<CreateUserResponseDTO>(restResponse);
+		}
+
+		[When(@"Delete User API is submitted")]
+		public void WhenDeleteUserAPIIsSubmitted()
+		{
+			Sub_URL = configData.ReqResApplication.User_URL + "/2";
+			restResponse = CallRestApi("DELETE", Sub_URL, null, null);
+		}
+
+
+
 
 
 		[Then(@"User Response should contain data as (.*),(.*),(.*),(.*),(.*)")]
@@ -96,6 +125,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 			Assert.AreEqual(expectedJob, createUserResponseDTO.job);
 
 		}
+
 
 		[Then(@"Response should contain an valid ID")]
 		public void ThenResponseShouldContainValidID()

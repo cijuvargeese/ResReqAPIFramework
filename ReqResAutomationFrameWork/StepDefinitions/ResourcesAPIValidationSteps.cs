@@ -15,7 +15,8 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		//private RestSharpMethods apiMethods = new RestSharpMethods();
 		//private IRestClient restClient;
 		//private RestRequest request;
-		ListResourcesResponseDTO respnseDTO;
+		ListResourcesResponseDTO listResponseDTO;
+		SingleResourcesResponseDTO singleResponseDTO;
 
 
 		[Given(@"a User navigates to ReqRes site for Resources")]
@@ -31,21 +32,47 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		public void WhenTheListResourcesAPIIsSubmittedForPage()
 		{
 			Sub_URL = configData.ReqResApplication.Resource_URL;
-			restResponse = CallGetApi(Sub_URL);
-			respnseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListResourcesResponseDTO>(restResponse);
+			restResponse = CallRestApi("GET", Sub_URL, null, null);
+			listResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListResourcesResponseDTO>(restResponse);
 
 		}
+
+		[When(@"the List Resources API is submitted for (.*)")]
+		public void WhenTheListResourcesAPIIsSubmittedFor(string id)
+		{
+			Sub_URL = configData.ReqResApplication.Resource_URL+"\\"+id;
+			restResponse = CallRestApi("GET", Sub_URL, null, null);
+			singleResponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<SingleResourcesResponseDTO>(restResponse);
+		}
+
 
 		[Then(@"Resource Response should contain data as (.*),(.*),(.*),(.*),(.*)")]
 		public void ThenResponseShouldContaindataAs(int ID, string name, string year, string color, string pantone_value)
 		{
 
-			var ListElement = respnseDTO.data.Find(x => x.id == ID);
+			var ListElement = listResponseDTO.data.Find(x => x.id == ID);
 			Assert.AreEqual(ID, ListElement.id);
 			Assert.AreEqual(name, ListElement.name);
 			Assert.AreEqual(year, ListElement.year);
 			Assert.AreEqual(color, ListElement.color);
 			Assert.AreEqual(pantone_value, ListElement.pantone_value);
+
+		}
+
+		[Then(@"Single Resource Response should contain data as (.*),(.*),(.*),(.*),(.*)")]
+		public void ThenSingleResponseShouldContaindataAs(int ID, string name, int year, string color, string pantone_value)
+		{
+
+			var ListElement = singleResponseDTO.data;
+			if(!(ListElement.ToString().Length<1))
+			{ 
+			Assert.AreEqual(ID, ListElement.id);
+			Assert.AreEqual(name, ListElement.name);
+			Assert.AreEqual(year, ListElement.year);
+			Assert.AreEqual(color, ListElement.color);
+			Assert.AreEqual(pantone_value, ListElement.pantone_value);
+			}
+
 		}
 
 	}

@@ -7,29 +7,25 @@ using System.Threading.Tasks;
 namespace ReqResAutomationFrameWork.Models.Response
 {
     
-    public class ResourceData
+    public class SingleResourceData
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string year { get; set; }
+        public int year { get; set; }
         public string color { get; set; }
         public string pantone_value { get; set; }
     }
 
-    public class ResourceSupport
+    public class SingleResourceSupport
     {
         public string url { get; set; }
         public string text { get; set; }
     }
 
-    public class ListResourcesResponseDTO
+    public class SingleResourcesResponseDTO
     {
-        public int page { get; set; }
-        public int per_page { get; set; }
-        public int total { get; set; }
-        public int total_pages { get; set; }
-        public List<ResourceData> data { get; set; }
-        public ResourceSupport support { get; set; }
+        public SingleResourceData data { get; set; }
+        public SingleResourceSupport support { get; set; }
     }
 
 

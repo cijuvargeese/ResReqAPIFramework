@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ReqResAutomationFrameWork.Models.Response
 {
 
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    
     public class SingleDataUser
     {
         public int id { get; set; }

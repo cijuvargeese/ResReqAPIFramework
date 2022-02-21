@@ -22,23 +22,58 @@ namespace ReqResAutomationFrameWork.Helpers
 			return restClient = new RestClient(Base_URL + Sub_URL);
 
 		}
-		public RestRequest callGetApi()
+
+
+		public RestRequest setRestRequestBasedOnMethodType(string httpMethod, String payload, IDictionary<string, string> headers)
 		{
-			request = new RestRequest(Method.GET);
-			return request;
+			Method method;
+			if (!Enum.TryParse(httpMethod, out method))
+			{
+				throw new ArgumentException("Invalid HTTP method.", nameof(httpMethod));
+			}
+			else
+			{
+
+				switch (method)
+				{
+					case Method.GET:
+						request = new RestRequest(Method.GET);
+						break;
+					case Method.DELETE:
+						request = new RestRequest(Method.DELETE);
+						break;
+					case Method.POST:
+						request = new RestRequest(Method.POST);
+						request = setOtherParametersforPOSTApi(payload, headers);
+						break;
+					case Method.PUT:
+						request = new RestRequest(Method.PUT);
+						request = setOtherParametersforPOSTApi(payload, headers);
+						break;
+					case Method.PATCH:
+						request = new RestRequest(Method.PATCH);
+						request = setOtherParametersforPOSTApi(payload, headers);
+						break;
+
+				}
+				return request;
+			}
+
+
 
 		}
 
-		public RestRequest callPostApi(String payload, IDictionary<string, string> headers)
+
+		public RestRequest setOtherParametersforPOSTApi(string payload, IDictionary<string, string> headers)
 		{
-			request = new RestRequest(Method.POST);
 			foreach (KeyValuePair<string, string> entry in headers)
 			{
 				request.AddHeader(entry.Key, entry.Value);
 			}
-
-			request.AddParameter(payload, ParameterType.RequestBody);
+			request.Parameters.Clear();
+			request.AddParameter("application/json", payload, ParameterType.RequestBody);
 			return request;
+
 		}
 
 		public IRestResponse getResponse(IRestClient restClient, RestRequest request)

@@ -37,8 +37,39 @@ Scenario: Verify Create User API
 	And set Create User job as <job>
 	When Create User API is submitted with payload
 	Then the API Status code should be 201
-	And Response should contain an valid ID
+	And Response should contain <expectedname> and <expectedjob>
 
 	Examples:
 		| name     | job    | expectedname | expectedjob |
 		| morpheus | leader | morpheus     | leader      |
+
+Scenario: Verify Update User API
+	Given a User navigates to ReqRes site
+	And set Create User name as <name>
+	And set Create User job as <job>
+	When Update User API is submitted with payload
+	Then the API Status code should be 200
+	And Response should contain <expectedname> and <expectedjob>
+
+	Examples:
+		| name             | job    | expectedname     | expectedjob |
+		| morpheus Marakar | leader | morpheus Marakar | leader      |
+
+
+Scenario: Verify Update User API using Patch
+	Given a User navigates to ReqRes site
+	And set Create User name as <name>
+	And set Create User job as <job>
+	When Update User API is submitted using PATCH with payload
+	Then the API Status code should be 200
+	And Response should contain <expectedname> and <expectedjob>
+
+	Examples:
+		| name             | job    | expectedname     | expectedjob |
+		| morpheus Kunjali | leader | morpheus Kunjali | leader      |
+
+
+Scenario: Verify Delete User API
+	Given a User navigates to ReqRes site
+	When Delete User API is submitted
+	Then the API Status code should be 204

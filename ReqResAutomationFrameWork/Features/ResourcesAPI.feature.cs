@@ -91,7 +91,7 @@ namespace ReqResAutomationFrameWork.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyListAllResourcesAPI(string id, string name, string year, string color, string pantone_Value, string[] exampleTags)
+        public virtual void VerifyListAllResourcesAPI(string id, string expectedname, string expectedyear, string expectedcolor, string expectedpantone_Value, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smokeTest"};
@@ -102,10 +102,10 @@ namespace ReqResAutomationFrameWork.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("id", id);
-            argumentsOfScenario.Add("name", name);
-            argumentsOfScenario.Add("year", year);
-            argumentsOfScenario.Add("color", color);
-            argumentsOfScenario.Add("pantone_value", pantone_Value);
+            argumentsOfScenario.Add("expectedname", expectedname);
+            argumentsOfScenario.Add("expectedyear", expectedyear);
+            argumentsOfScenario.Add("expectedcolor", expectedcolor);
+            argumentsOfScenario.Add("expectedpantone_value", expectedpantone_Value);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify List All Resources API", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("a User navigates to ReqRes site for Resources", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.When("the List Resources API is submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -137,7 +137,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the API Status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.And(string.Format("Resource Response should contain data as {0},{1},{2},{3},{4}", id, name, year, color, pantone_Value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Resource Response should contain data as {0},{1},{2},{3},{4}", id, expectedname, expectedyear, expectedcolor, expectedpantone_Value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -149,14 +149,143 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:name", "cerulean")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:year", "2000")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:color", "#98B2D1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:pantone_value", "15-4020")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedname", "cerulean")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedyear", "2000")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedcolor", "#98B2D1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedpantone_value", "15-4020")]
         public virtual void VerifyListAllResourcesAPI_1()
         {
 #line 5
 this.VerifyListAllResourcesAPI("1", "cerulean", "2000", "#98B2D1", "15-4020", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyListSingleResourceAPI(string id, string expectedname, string expectedyear, string expectedcolor, string expectedpantone_Value, string responsecode, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "smokeTest"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            argumentsOfScenario.Add("expectedname", expectedname);
+            argumentsOfScenario.Add("expectedyear", expectedyear);
+            argumentsOfScenario.Add("expectedcolor", expectedcolor);
+            argumentsOfScenario.Add("expectedpantone_value", expectedpantone_Value);
+            argumentsOfScenario.Add("responsecode", responsecode);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify List Single Resource API", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 16
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 17
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 18
+ testRunner.When(string.Format("the List Resources API is submitted for {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
+ testRunner.Then(string.Format("the API Status code should be {0}", responsecode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+ testRunner.And(string.Format("Single Resource Response should contain data as {0},{1},{2},{3},{4}", id, expectedname, expectedyear, expectedcolor, expectedpantone_Value), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify List Single Resource API: 1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Resources API Validation")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedname", "cerulean")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedyear", "2000")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedcolor", "#98B2D1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedpantone_value", "15-4020")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:responsecode", "200")]
+        public virtual void VerifyListSingleResourceAPI_1()
+        {
+#line 16
+this.VerifyListSingleResourceAPI("1", "cerulean", "2000", "#98B2D1", "15-4020", "200", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyResourceAPIBehaviourWhenIDIsNotPresentInSystem(string id, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "smokeTest"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Resource API behaviour when ID is not present in system", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 28
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 29
+ testRunner.When(string.Format("the List Resources API is submitted for {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+ testRunner.Then("the API Status code should be 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Resource API behaviour when ID is not present in system: 23")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Resources API Validation")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "23")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "23")]
+        public virtual void VerifyResourceAPIBehaviourWhenIDIsNotPresentInSystem_23()
+        {
+#line 27
+this.VerifyResourceAPIBehaviourWhenIDIsNotPresentInSystem("23", ((string[])(null)));
 #line hidden
         }
     }
