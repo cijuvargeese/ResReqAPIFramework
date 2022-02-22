@@ -73,3 +73,15 @@ Scenario: Verify Delete User API
 	Given a User navigates to ReqRes site
 	When Delete User API is submitted
 	Then the API Status code should be 204
+
+
+@smokeTest
+Scenario: Verify List All Users API with delay
+	Given a User navigates to ReqRes site
+	When the List Users API is submitted for page "2" with delay of "3" seconds
+	Then the API Status code should be 200
+	And User Response should contain data as <id>,<email>,<first_name>,<last_name>,<avatar>
+
+	Examples:
+		| id | email                      | first_name | last_name | avatar                                  |
+		| 7  | michael.lawson@reqres.in   | Michael    | Lawson    | https://reqres.in/img/faces/7-image.jpg |

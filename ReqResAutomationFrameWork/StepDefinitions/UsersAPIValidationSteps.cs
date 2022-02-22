@@ -41,10 +41,20 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		[When(@"the List Users API is submitted for page ""(.*)""")]
 		public void WhenTheListUsersAPIIsSubmittedForPage(String pageNo)
 		{
+
 			Sub_URL = configData.ReqResApplication.User_URL + "?page=" + pageNo;
 			restResponse = CallRestApi("GET", Sub_URL, null, null);
 			listAllUsersresponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListUserResponseDTO>(restResponse);
 		}
+
+		[When(@"the List Users API is submitted for page ""(.*)"" with delay of ""(.*)"" seconds")]
+		public void WhenTheListUsersAPIIsSubmittedForPageWithDelayOfSeconds(string pageNo, string delay)
+		{
+			Sub_URL = configData.ReqResApplication.User_URL + "?page=" + pageNo + "?delay=" + delay;
+			restResponse = CallRestApi("GET", Sub_URL, null, null);
+			listAllUsersresponseDTO = ConvertJsontoObj.ConvertJsontoObjFromResponse<ListUserResponseDTO>(restResponse);
+		}
+
 
 
 		[When(@"the List Single User API is submitted for (.*)")]
@@ -103,6 +113,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		{
 
 			var ListElement = listAllUsersresponseDTO.data.Find(x => x.id == ID);
+			Assert.IsNotNull(ListElement, "Data with respect to ID " + ID + " is not present in response" + restResponse.Content.ToString());
 			ValidateUserData(ListElement, ID, email, first_name, last_name, avatar);
 
 		}

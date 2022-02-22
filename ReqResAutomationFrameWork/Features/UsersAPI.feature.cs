@@ -544,6 +544,75 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        public virtual void VerifyListAllUsersAPIWithDelay(string id, string email, string first_Name, string last_Name, string avatar, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "smokeTest"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("id", id);
+            argumentsOfScenario.Add("email", email);
+            argumentsOfScenario.Add("first_name", first_Name);
+            argumentsOfScenario.Add("last_name", last_Name);
+            argumentsOfScenario.Add("avatar", avatar);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify List All Users API with delay", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 79
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 80
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 81
+ testRunner.When("the List Users API is submitted for page \"2\" with delay of \"3\" seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 82
+ testRunner.Then("the API Status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 83
+ testRunner.And(string.Format("User Response should contain data as {0},{1},{2},{3},{4}", id, email, first_Name, last_Name, avatar), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify List All Users API with delay: 7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Users API Validation")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "7")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "michael.lawson@reqres.in")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:first_name", "Michael")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:last_name", "Lawson")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:avatar", "https://reqres.in/img/faces/7-image.jpg")]
+        public virtual void VerifyListAllUsersAPIWithDelay_7()
+        {
+#line 79
+this.VerifyListAllUsersAPIWithDelay("7", "michael.lawson@reqres.in", "Michael", "Lawson", "https://reqres.in/img/faces/7-image.jpg", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore
