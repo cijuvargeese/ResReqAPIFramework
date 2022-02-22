@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace ReqResAutomationFrameWork.Models.Configuration
 {
 
-	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 	public class ReqResApplication
 	{
 		public string Base_URL { get; set; }

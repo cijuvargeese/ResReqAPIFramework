@@ -34,6 +34,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 
 
 
+
 		}
 
 
@@ -55,7 +56,7 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 		[Given(@"a User navigates to ReqRes site")]
 		public void GivenAUserNavigatesToReqResSiteforUsers()
 		{
-			Base_URL = configData.ReqResApplication.Base_URL;
+			Base_URL = getBaseUrl();
 
 
 		}
@@ -88,6 +89,14 @@ namespace ReqResAutomationFrameWork.StepDefinitions
 			Assert.AreEqual(last_name, listElement.last_name);
 			Assert.AreEqual(avatar, listElement.avatar);
 
+		}
+
+		public string getBaseUrl()
+		{
+			if (String.IsNullOrEmpty(Environment.GetEnvironmentVariable("Base_URL")))
+				return Base_URL = configData.ReqResApplication.Base_URL;
+			else
+				return Base_URL = Environment.GetEnvironmentVariable("Base_URL");
 		}
 
 
