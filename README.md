@@ -19,10 +19,15 @@ The framework supports parallel execution in Scenario level(Class level). This i
 In order to achieve normal execution comment out lines in ParallelConfig.cs class
 
 # Adding new tests
-1. For adding new tests, specflow base knowledge is required. 
+1. For adding new tests, Specflow Basic knowledge is required. 
 2. If its a new test for an existing feature, add a new scenario under existing feature in Gherkin language. Update the corresponding step definition classes.
 3. While creating new feature files, respective step definition and implementation of these step definition should be done.
 4. Make sure all the tests are passing after modifications.
+
+# For Changing the environment
+For running the framework in multiple environment
+1. Modify the Base_URL in the AppSettings.json with the new Environment URL 
+2. The Base_URL variable is also refering to Environment Variables, we can either set it as an environment variable in our local machine or set as pipeline variable in our Azure Build/Release pipeline
 
 # Note
 All the passwords used in test are Base64 encrypted and should be provided as such, if not will cause in failure.
