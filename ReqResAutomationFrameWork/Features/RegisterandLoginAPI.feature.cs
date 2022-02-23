@@ -91,7 +91,7 @@ namespace ReqResAutomationFrameWork.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyRegisterUserAPI(string email, string password, string expectedEmail, string[] exampleTags)
+        public virtual void VerifyRegisterUserAPI(string email, string expectedEmail, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smokeTest"};
@@ -102,7 +102,6 @@ namespace ReqResAutomationFrameWork.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("expectedEmail", expectedEmail);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Register User API", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
@@ -132,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.And(string.Format("set password as {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("Register User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -153,21 +152,19 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.in")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.in")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:expectedEmail", "emma.wong@reqres.in")]
         public virtual void VerifyRegisterUserAPI_Emma_WongReqres_In()
         {
 #line 5
-this.VerifyRegisterUserAPI("emma.wong@reqres.in", "pistol", "emma.wong@reqres.in", ((string[])(null)));
+this.VerifyRegisterUserAPI("emma.wong@reqres.in", "emma.wong@reqres.in", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyUnsuccessfulRegisterUserProcess(string email, string password, string errorMessage, string[] exampleTags)
+        public virtual void VerifyUnsuccessfulRegisterUserProcess(string email, string errorMessage, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("errorMessage", errorMessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Unsuccessful Register User Process", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 17
@@ -197,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
- testRunner.And(string.Format("set password as {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
  testRunner.When("Register User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -217,26 +214,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Note: Only defined users succeed registration")]
         public virtual void VerifyUnsuccessfulRegisterUserProcess_Emma_WongReqres_Inq1()
         {
 #line 17
-this.VerifyUnsuccessfulRegisterUserProcess("emma.wong@reqres.inq1", "pistol", "Note: Only defined users succeed registration", ((string[])(null)));
-#line hidden
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Register User Process: emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing password")]
-        public virtual void VerifyUnsuccessfulRegisterUserProcess_Emma_WongReqres_Inq()
-        {
-#line 17
-this.VerifyUnsuccessfulRegisterUserProcess("emma.wong@reqres.inq", "", "Missing password", ((string[])(null)));
+this.VerifyUnsuccessfulRegisterUserProcess("emma.wong@reqres.inq1", "Note: Only defined users succeed registration", ((string[])(null)));
 #line hidden
         }
         
@@ -244,16 +226,15 @@ this.VerifyUnsuccessfulRegisterUserProcess("emma.wong@reqres.inq", "", "Missing 
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Register User Process: ")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing email or username")]
         public virtual void VerifyUnsuccessfulRegisterUserProcess_()
         {
 #line 17
-this.VerifyUnsuccessfulRegisterUserProcess("", "pistol", "Missing email or username", ((string[])(null)));
+this.VerifyUnsuccessfulRegisterUserProcess("", "Missing email or username", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyLoginUserAPI(string email, string password, string[] exampleTags)
+        public virtual void VerifyLoginUserAPI(string email, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smokeTest"};
@@ -264,9 +245,8 @@ this.VerifyUnsuccessfulRegisterUserProcess("", "pistol", "Missing email or usern
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("password", password);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Login User API", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 32
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -286,22 +266,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
+#line 32
  testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 34
+#line 33
  testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 35
- testRunner.And(string.Format("set password as {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+ testRunner.And("set password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 35
  testRunner.When("Login User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 36
  testRunner.Then("the API Status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 37
  testRunner.And("Response should contain token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -314,23 +294,21 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smokeTest")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.in")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.in")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         public virtual void VerifyLoginUserAPI_Emma_WongReqres_In()
         {
-#line 32
-this.VerifyLoginUserAPI("emma.wong@reqres.in", "pistol", ((string[])(null)));
+#line 31
+this.VerifyLoginUserAPI("emma.wong@reqres.in", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyUnsuccessfulLoginUserProcess(string email, string password, string errorMessage, string[] exampleTags)
+        public virtual void VerifyUnsuccessfulLoginUserProcess(string email, string errorMessage, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("errorMessage", errorMessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Unsuccessful Login User Process", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 44
+#line 43
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -350,22 +328,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 45
+#line 44
  testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 46
+#line 45
  testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
- testRunner.And(string.Format("set password as {0}", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.And("set password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 48
+#line 47
  testRunner.When("Login User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 49
+#line 48
  testRunner.Then("the API Status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 50
+#line 49
  testRunner.And(string.Format("Response should contain error message {0}", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -377,26 +355,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq1")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "user not found")]
         public virtual void VerifyUnsuccessfulLoginUserProcess_Emma_WongReqres_Inq1()
         {
-#line 44
-this.VerifyUnsuccessfulLoginUserProcess("emma.wong@reqres.inq1", "pistol", "user not found", ((string[])(null)));
-#line hidden
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Login User Process: emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing password")]
-        public virtual void VerifyUnsuccessfulLoginUserProcess_Emma_WongReqres_Inq()
-        {
-#line 44
-this.VerifyUnsuccessfulLoginUserProcess("emma.wong@reqres.inq", "", "Missing password", ((string[])(null)));
+#line 43
+this.VerifyUnsuccessfulLoginUserProcess("emma.wong@reqres.inq1", "user not found", ((string[])(null)));
 #line hidden
         }
         
@@ -404,12 +367,137 @@ this.VerifyUnsuccessfulLoginUserProcess("emma.wong@reqres.inq", "", "Missing pas
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Login User Process: ")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:password", "pistol")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing email or username")]
         public virtual void VerifyUnsuccessfulLoginUserProcess_()
         {
-#line 44
-this.VerifyUnsuccessfulLoginUserProcess("", "pistol", "Missing email or username", ((string[])(null)));
+#line 43
+this.VerifyUnsuccessfulLoginUserProcess("", "Missing email or username", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyUnsuccessfulRegisterUserProcessWithPasswordAsNull(string email, string errorMessage, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("email", email);
+            argumentsOfScenario.Add("errorMessage", errorMessage);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Unsuccessful Register User Process with password as null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 56
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 57
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 58
+ testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 59
+ testRunner.And("set password as null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 60
+ testRunner.When("Register User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 61
+ testRunner.Then("the API Status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 62
+ testRunner.And(string.Format("Response should contain error message {0}", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Register User Process with password as null: emma.wong@reqres" +
+            ".inq")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing password")]
+        public virtual void VerifyUnsuccessfulRegisterUserProcessWithPasswordAsNull_Emma_WongReqres_Inq()
+        {
+#line 56
+this.VerifyUnsuccessfulRegisterUserProcessWithPasswordAsNull("emma.wong@reqres.inq", "Missing password", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyUnsuccessfulLoginUserProcessWithPasswordAsNull(string email, string errorMessage, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("email", email);
+            argumentsOfScenario.Add("errorMessage", errorMessage);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Unsuccessful Login User Process with password as null", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 68
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 69
+ testRunner.Given("a User navigates to ReqRes site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 70
+ testRunner.And(string.Format("set email as {0}", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+ testRunner.And("set password as null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 72
+ testRunner.When("Login User API is submitted with payload", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 73
+ testRunner.Then("the API Status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 74
+ testRunner.And(string.Format("Response should contain error message {0}", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Unsuccessful Login User Process with password as null: emma.wong@reqres.in" +
+            "q")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Register and Login API Validations")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "emma.wong@reqres.inq")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:email", "emma.wong@reqres.inq")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:errorMessage", "Missing password")]
+        public virtual void VerifyUnsuccessfulLoginUserProcessWithPasswordAsNull_Emma_WongReqres_Inq()
+        {
+#line 68
+this.VerifyUnsuccessfulLoginUserProcessWithPasswordAsNull("emma.wong@reqres.inq", "Missing password", ((string[])(null)));
 #line hidden
         }
     }
